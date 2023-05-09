@@ -15,6 +15,7 @@ import { UsersDetailsComponent } from './users-details/users-details.component';
 import { ProfileComponent } from './profile/profile.component';
 import { TestComponent } from './test/test.component';
 import { DashboardMainComponent } from './dashboard-main/dashboard-main.component';
+import { BlogComponent } from './blog/blog.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -25,15 +26,20 @@ const routes: Routes = [
   { path: 'forgotpassword', component: ForgotPasswordComponent },
   {
     path: 'admin', component: DashboardComponent, canActivate: [AdminGuard], children: [
+
       { path: 'usersDetails', component: UsersDetailsComponent },
+      { path: 'blog', component: BlogComponent },
       { path: 'profile', component: ProfileComponent },
       {path:'dashboard',component:DashboardMainComponent},
   ]},
   {
     path: 'user/main', component: UserPageComponent, canActivate: [UserGuard], children: [
+      
           { path: 'profile', component: ProfileComponent },
+          { path: 'blog', component: BlogComponent },
   ]},
-  { path: 'member/main', component: MemberPageComponent, canActivate: [MemberGuard] },
+  { path: 'member/main', component: MemberPageComponent, canActivate: [MemberGuard] , children: [  { path: 'blog', component: BlogComponent }]         },
+
   { path: 'notfound', component: NotFoundComponent },
   { path: '**', component: NotFoundComponent }
 ];
